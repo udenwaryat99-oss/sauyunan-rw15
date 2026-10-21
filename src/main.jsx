@@ -41,7 +41,52 @@ const [passwordAdmin, setPasswordAdmin] = useState('');
     { icon: '💰', title: 'Keuangan', desc: 'Informasi kas dan laporan' },
     { icon: '👤', title: 'Profil', desc: 'Informasi akun pengguna' },
   ];
+if (halaman === 'login') {
+  return (
+    <main className="app">
+      <header className="hero">
+        <div className="mark">🔐</div>
+        <p className="eyebrow">AREA PENGURUS</p>
+        <h1>Login Admin</h1>
+        <p className="subtitle">Sauyunan RW 15</p>
+      </header>
 
+      <section className="content">
+        <form onSubmit={loginAdmin}>
+          <label>Email Admin</label>
+          <input
+            type="email"
+            value={emailAdmin}
+            onChange={(e) => setEmailAdmin(e.target.value)}
+            required
+            placeholder="Masukkan email admin"
+          />
+
+          <label>Kata Sandi</label>
+          <input
+            type="password"
+            value={passwordAdmin}
+            onChange={(e) => setPasswordAdmin(e.target.value)}
+            required
+            placeholder="Masukkan kata sandi"
+          />
+
+          <button className="menu-card" type="submit">
+            Masuk sebagai Admin
+          </button>
+
+          <button
+            className="menu-card"
+            type="button"
+            onClick={() => setHalaman('beranda')}
+          >
+            Kembali ke Beranda
+          </button>
+        </form>
+      </section>
+    </main>
+  );
+}
     if (halaman === 'pengaduan') {
     return (
       <main className="app">
