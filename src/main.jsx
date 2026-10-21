@@ -11,6 +11,22 @@ const supabase = createClient(
 function App() {
   const [emailAdmin, setEmailAdmin] = useState('');
 const [passwordAdmin, setPasswordAdmin] = useState('');
+  const loginAdmin = async (e) => {
+  e.preventDefault();
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email: emailAdmin,
+    password: passwordAdmin,
+  });
+
+  if (error) {
+    alert('Login gagal. Periksa email dan kata sandi.');
+    return;
+  }
+
+  alert('Alhamdulillah, login admin berhasil!');
+  setHalaman('admin');
+};
     const [halaman, setHalaman] = useState('beranda');
   const [nama, setNama] = useState('');
   const [rt, setRt] = useState('');
