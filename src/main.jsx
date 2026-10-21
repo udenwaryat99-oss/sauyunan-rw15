@@ -13,6 +13,38 @@ function App() {
 const [passwordAdmin, setPasswordAdmin] = useState('');
   const [daftarPengaduan, setDaftarPengaduan] = useState([]);
 const [memuatPengaduan, setMemuatPengaduan] = useState(false);
+  const ambilPengaduan = async () => {
+  setMemuatPengaduan(true);
+    const ubahStatus = async (id, statusBaru) => {
+  const { error } = await supabase
+    .from('pengaduan')
+    .update({ status: statusBaru })
+    .eq('id', id);
+
+  if (error) {
+    alert('Status gagal diperbarui.');
+    console.error(error);
+    return;
+  }
+
+  alert('Status pengaduan berhasil diperbarui!');
+  await ambilPengaduan();
+};
+
+  const { data, error } = await supabase
+    .from('pengaduan')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    alert('Gagal mengambil data pengaduan.');
+    console.error(error);
+  } else {
+    setDaftarPengaduan(data || []);
+  }
+
+  setMemuatPengaduan(false);
+};
   const loginAdmin = async (e) => {
   e.preventDefault();
 
@@ -27,7 +59,8 @@ const [memuatPengaduan, setMemuatPengaduan] = useState(false);
   }
 
   alert('Alhamdulillah, login admin berhasil!');
-  setHalaman('admin');
+await ambilPengaduan();
+setHalaman('admin');
 };
     const [halaman, setHalaman] = useState('beranda');
   const [nama, setNama] = useState('');
@@ -43,6 +76,48 @@ const [memuatPengaduan, setMemuatPengaduan] = useState(false);
     { icon: '💰', title: 'Keuangan', desc: 'Informasi kas dan laporan' },
     { icon: '👤', title: 'Profil', desc: 'Informasi akun pengguna' },
   ];
+  if (halaman === 'admin') {
+  return (
+    <main className="app">
+      <header className="hero">
+        <div className="mark">📋</div>
+        <p className="eyebrow">PANEL PENGURUS</p>
+        <h1>Dashboard Admin</h1>
+        <p className="subtitle">Sauyunan RW 15</p>
+      </header>
+
+      <section className="content">
+        <h2>Daftar Pengaduan Warga</h2>
+
+        <button
+          className="menu-card"
+          onClick={ambilPengaduan}
+          disabled={memuatPengaduan}
+        >
+          {memuatPengaduan ? 'Memuat...' : 'Muat Pengaduan'}
+        </button>
+
+        {daftarPengaduan.map((laporan) => (
+          <article className="menu-card" key={laporan.id}>
+            <h3>{laporan.judul}</h3>
+            <p><strong>Pelapor:</strong> {laporan.nama_pelapor}</p>
+            <p><strong>RT:</strong> {laporan.rt}</p>
+            <p><strong>Kategori:</strong> {laporan.kategori}</p>
+            <p>{laporan.isi_laporan}</p>
+            <p><strong>Status:</strong> {laporan.status}</p>
+          </article>
+        ))}
+
+        <button
+          className="menu-card"
+          onClick={() => setHalaman('beranda')}
+        >
+          Kembali ke Beranda
+        </button>
+      </section>
+    </main>
+  );
+}
 if (halaman === 'login') {
   return (
     <main className="app">
