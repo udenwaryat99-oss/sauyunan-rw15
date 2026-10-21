@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import './style.css';
 import { createClient } from '@supabase/supabase-js';
+import './style.css';
 
 const supabase = createClient(
   'https://ywelnddqnxsrqpvbdgme.supabase.co/rest/v1/',
-  'import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  'MASUKKAN_API_URL_DI_SINI',
-  'MASUKKAN_PUBLISHABLE_KEY_DI_SINI'
-);'
+  'sb_publishable_udINOibx_YfFTsQP-2JbcA_0PS6rNP_'
 );
 
 function App() {
