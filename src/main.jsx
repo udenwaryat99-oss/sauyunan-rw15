@@ -11,6 +11,8 @@ const supabase = createClient(
 function App() {
   const [emailAdmin, setEmailAdmin] = useState('');
 const [passwordAdmin, setPasswordAdmin] = useState('');
+  const [daftarPengaduan, setDaftarPengaduan] = useState([]);
+const [memuatPengaduan, setMemuatPengaduan] = useState(false);
   const loginAdmin = async (e) => {
   e.preventDefault();
 
