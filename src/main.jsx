@@ -234,7 +234,17 @@ if (halaman === 'login') {
             </button>
           ))}
         </div>
-
+<button
+  className="menu-card"
+  onClick={() => setHalaman('login')}
+>
+  <span className="menu-icon">🔐</span>
+  <span className="menu-title">Login Admin RW 15</span>
+  <span className="menu-desc">
+    Masuk khusus pengurus RW
+  </span>
+  <span className="arrow">›</span>
+</button>
         <div className="notice">
           <span className="notice-icon">🌿</span>
           <div>
