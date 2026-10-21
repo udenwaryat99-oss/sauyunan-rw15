@@ -126,9 +126,13 @@ function App() {
             <button
               className="menu-card"
               key={item.title}
-              onClick={() => alert(
-  `Menu ${item.title} akan diaktifkan setelah fitur dan database disiapkan.`
-)}
+              onClick={() => {
+  if (item.title === 'Pengaduan') {
+    setHalaman('pengaduan');
+  } else {
+    alert(`Menu ${item.title} akan diaktifkan pada tahap berikutnya.`);
+  }
+}}
             >
               <span className="menu-icon">{item.icon}</span>
               <span className="menu-title">{item.title}</span>
