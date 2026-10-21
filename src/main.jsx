@@ -42,10 +42,34 @@ function App() {
         </header>
 
         <section className="content">
-          <form onSubmit={(e) => {
-            e.preventDefault();
-            alert('Formulir sudah diisi. Penyimpanan laporan ke database akan kita aktifkan pada langkah berikutnya.');
-          }}>
+          <form onSubmit={async (e) => {
+  e.preventDefault();
+
+  const { error } = await supabase
+    .from('pengaduan')
+    .insert([
+      {
+        nama_pelapor: nama,
+        rt: rt,
+        kategori: kategori,
+        judul: judul,
+        isi_laporan: isiLaporan
+      }
+    ]);
+
+  if (error) {
+    alert('Pengaduan gagal disimpan. Silakan coba lagi.');
+    console.error(error);
+    return;
+  }
+
+  alert('Alhamdulillah, pengaduan berhasil dikirim!');
+  setNama('');
+  setRt('');
+  setKategori('Infrastruktur');
+  setJudul('');
+  setIsiLaporan('');
+}}>
             <label>Nama Pelapor</label>
             <input
               value={nama}
