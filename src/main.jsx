@@ -104,7 +104,15 @@ setHalaman('admin');
             <p><strong>RT:</strong> {laporan.rt}</p>
             <p><strong>Kategori:</strong> {laporan.kategori}</p>
             <p>{laporan.isi_laporan}</p>
-            <p><strong>Status:</strong> {laporan.status}</p>
+            <label>Status:</label>
+<select
+  value={laporan.status}
+  onChange={(e) => ubahStatus(laporan.id, e.target.value)}
+>
+  <option value="Menunggu">Menunggu</option>
+  <option value="Diproses">Diproses</option>
+  <option value="Selesai">Selesai</option>
+</select>
           </article>
         ))}
 
