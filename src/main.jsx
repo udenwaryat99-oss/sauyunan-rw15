@@ -18,6 +18,89 @@ function App() {
     { icon: '👤', title: 'Profil', desc: 'Informasi akun pengguna' },
   ];
 
+    if (halaman === 'pengaduan') {
+    return (
+      <main className="app">
+        <header className="hero">
+          <div className="mark">📢</div>
+          <p className="eyebrow">LAYANAN WARGA</p>
+          <h1>Pengaduan RW 15</h1>
+          <p className="subtitle">
+            Sampaikan keluhan atau laporan untuk lingkungan kita.
+          </p>
+        </header>
+
+        <section className="content">
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            alert('Formulir sudah diisi. Penyimpanan laporan ke database akan kita aktifkan pada langkah berikutnya.');
+          }}>
+            <label>Nama Pelapor</label>
+            <input
+              value={nama}
+              onChange={(e) => setNama(e.target.value)}
+              required
+              placeholder="Masukkan nama"
+            />
+
+            <label>RT</label>
+            <select value={rt} onChange={(e) => setRt(e.target.value)} required>
+              <option value="">Pilih RT</option>
+              <option value="01">RT 01</option>
+              <option value="02">RT 02</option>
+              <option value="03">RT 03</option>
+              <option value="04">RT 04</option>
+              <option value="05">RT 05</option>
+              <option value="06">RT 06</option>
+            </select>
+
+            <label>Kategori Pengaduan</label>
+            <select
+              value={kategori}
+              onChange={(e) => setKategori(e.target.value)}
+              required
+            >
+              <option value="Infrastruktur">Infrastruktur</option>
+              <option value="Keamanan">Keamanan</option>
+              <option value="Kebersihan">Kebersihan</option>
+              <option value="Sosial">Sosial</option>
+              <option value="Lainnya">Lainnya</option>
+            </select>
+
+            <label>Judul Laporan</label>
+            <input
+              value={judul}
+              onChange={(e) => setJudul(e.target.value)}
+              required
+              placeholder="Contoh: Lampu jalan mati"
+            />
+
+            <label>Isi Laporan</label>
+            <textarea
+              value={isiLaporan}
+              onChange={(e) => setIsiLaporan(e.target.value)}
+              required
+              rows="5"
+              placeholder="Jelaskan laporan dengan lengkap"
+            />
+
+            <button className="menu-card" type="submit">
+              Kirim Pengaduan
+            </button>
+
+            <button
+              className="menu-card"
+              type="button"
+              onClick={() => setHalaman('beranda')}
+            >
+              Kembali ke Beranda
+            </button>
+          </form>
+        </section>
+      </main>
+    );
+  }
+
   return (
     <main className="app">
       <header className="hero">
