@@ -4,7 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 import './style.css';
 
 const supabase = createClient(
-  'https://ywelnddqnxsrqpvbdgme.supabase.co/rest/v1/',
+  'https://ywelnddqnxsrqpvbdgme.supabase.co',
   'sb_publishable_udINOibx_YfFTsQP-2JbcA_0PS6rNP_'
 );
 
