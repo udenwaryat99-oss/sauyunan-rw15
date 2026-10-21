@@ -9,6 +9,8 @@ const supabase = createClient(
 );
 
 function App() {
+  const [emailAdmin, setEmailAdmin] = useState('');
+const [passwordAdmin, setPasswordAdmin] = useState('');
     const [halaman, setHalaman] = useState('beranda');
   const [nama, setNama] = useState('');
   const [rt, setRt] = useState('');
