@@ -38,8 +38,8 @@ function App() {
               className="menu-card"
               key={item.title}
               onClick={() => alert(
-                Menu ${item.title} akan diaktifkan setelah fitur dan database disiapkan.
-              )}
+  `Menu ${item.title} akan diaktifkan setelah fitur dan database disiapkan.`
+)}
             >
               <span className="menu-icon">{item.icon}</span>
               <span className="menu-title">{item.title}</span>
