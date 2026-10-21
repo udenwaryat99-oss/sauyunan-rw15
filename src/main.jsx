@@ -3,6 +3,12 @@ import { createRoot } from 'react-dom/client';
 import './style.css';
 
 function App() {
+    const [halaman, setHalaman] = useState('beranda');
+  const [nama, setNama] = useState('');
+  const [rt, setRt] = useState('');
+  const [kategori, setKategori] = useState('Infrastruktur');
+  const [judul, setJudul] = useState('');
+  const [isiLaporan, setIsiLaporan] = useState('');
   const menu = [
     { icon: '👨‍👩‍👧‍👦', title: 'Data Warga', desc: 'Informasi warga RW 15' },
     { icon: '📢', title: 'Pengaduan', desc: 'Sampaikan keluhan warga' },
